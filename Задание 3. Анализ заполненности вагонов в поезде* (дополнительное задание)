@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+int wagons[10];
+
+void overloaded(int wagon, int passengers){
+    if(passengers > 20){
+        cout << "Вагон " << wagon << " перегружен\n";
+    }
+}
+
+void emptySeats(int wagon, int passengers){ 
+    if(passengers < 20){
+        cout << "В вагоне " << wagon << " есть свободные места\n";
+    }
+}
+
+#define check_condition_wagons(wagon) \
+    do{ \
+        overloaded(wagon, wagons[wagon - 1]); \
+        emptySeats(wagon, wagons[wagon - 1]); \
+    } while(0)
+
+#define ANOLISE_WAGONS \
+    check_condition_wagons(1); \
+    check_condition_wagons(2); \
+    check_condition_wagons(3); \
+    check_condition_wagons(4); \
+    check_condition_wagons(5); \
+    check_condition_wagons(6); \
+    check_condition_wagons(7); \
+    check_condition_wagons(8); \
+    check_condition_wagons(9); \
+    check_condition_wagons(10); 
+
+int main() {
+    setlocale(LC_ALL, "RU");
+    int passengers;
+
+    for(int i = 0; i < size(wagons); i++){
+        cout << "Введите количество пассажиров в " << i + 1 << " вагоне: ";
+        cin >> passengers;
+        wagons[i] = passengers;
+    }
+
+    ANOLISE_WAGONS
+    
+}
